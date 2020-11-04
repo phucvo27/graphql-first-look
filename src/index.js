@@ -4,9 +4,35 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+const cache = new InMemoryCache();
+// Url for Query
+// const client = new ApolloClient({
+//   uri: 'https://71z1g.sse.codesandbox.io/',
+//   cache
+// });
+
+// Url for Mutation
+const client = new ApolloClient({
+  uri: 'https://sxewr.sse.codesandbox.io/',
+  cache
+})
+// client.query({
+//   query: gql`
+//     query {
+//       me
+//     }
+//   `
+// }).then(res => {
+//   console.log(res)
+// })
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
